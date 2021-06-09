@@ -6,7 +6,7 @@ shared: &shared
         - image: continuumio/miniconda3
           environment:
              BASH_ENV: ~/.bashrc
-    working_directory: ~/monitor-server--api.ci
+    working_directory: ~/monitor-server-api.ci
     steps:
         - checkout
         - run:
@@ -84,7 +84,7 @@ jobs:
             - image: continuumio/miniconda3
               environment:
                 BASH_ENV: ~/.bashrc
-        working_directory: ~/pytest-monitor.ci
+        working_directory: ~/monitor-server-api.ci
         steps:
             - checkout
             - run:
