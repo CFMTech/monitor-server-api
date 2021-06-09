@@ -2,7 +2,7 @@
 
 [![CircleCI](https://circleci.com/gh/CFMTech/monitor-server-api.svg?style=svg)](https://circleci.com/gh/CFMTech/monitor-server-api)
 
-[![License](https://img.shields.io/badge/License-MIT-Blue.svg)
+![License](https://img.shields.io/badge/License-MIT-Blue.svg)
 
 ## Features
 
@@ -73,7 +73,7 @@ Before submitting a pull request, please ensure that:
 
 ### Issues
 
-If you encounter any problem, please `file an issue` along with a detailed
+If you encounter any problem, please file an issue along with a detailed
 description.
 
 See [contributing file](CONTRIBUTING.md) for more information.
