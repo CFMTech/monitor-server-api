@@ -1,0 +1,129 @@
+{
+  "/api/v1/filters/scope/function/metrics":
+  {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:41:35.990018",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.009404897689819336,
+          "user_time":  0.002093055999999982,
+          "kernel_time": 0.004456143999999995,
+          "cpu_usage": 0.6963605789236166,
+          "mem_usage": 140.12109375
+        },
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:41:36.003282",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set1, expected_matrix1]",
+          "item_fs_loc": "tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.8004801273345947,
+          "user_time": 0.722636224,
+          "kernel_time": 0.069095616,
+          "cpu_usage": 0.9890711998513638,
+          "mem_usage": 147.5234375
+        },
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:41:36.809390",
+          "item_path": "test_lev",
+          "item": "test_levenshtein",
+          "item_variant": "test_levenshtein",
+          "item_fs_loc": "tests/test_lev.py",
+          "kind": "function",
+          "component": "math.distance",
+          "total_time": 678.7139070034027,
+          "user_time": 676.4789990400001,
+          "kernel_time": 1.144489664,
+          "cpu_usage": 0.998393405103165,
+          "mem_usage": 147.5390625
+        }
+      ],
+      "next_url": "/filters/scope/function/metrics?page=2",
+      "total_page": 2
+    },
+    "status_code": 200
+  },
+  "/api/v1/filters/scope/function/metrics?page=2": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:52:55.528818",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "test_prime[2]",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "function",
+          "component": "math.prime",
+          "total_time": 0.008001089096069336,
+          "user_time": 0.0016383999999334264,
+          "kernel_time": 0.0030099199999999993,
+          "cpu_usage": 0.7758096090971127,
+          "mem_usage": 147.5390625
+        }
+      ],
+      "prev_url": "/filters/scope/function/metrics?page=1",
+      "total_page": 2
+    },
+    "status_code": 200
+  },
+  "/api/v1/filters/scope/module/metrics": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:41:35.990018",
+          "item_path": "test_analytics",
+          "item": "test_analytics",
+          "item_variant": "",
+          "item_fs_loc": "tests/test_analytics.py",
+          "kind": "module",
+          "component": "math.analytics",
+          "total_time": 1.5,
+          "user_time": 0.003,
+          "kernel_time": 0.001,
+          "cpu_usage": 0.75,
+          "mem_usage": 140
+        },
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:41:36.003282",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "module",
+          "component": "math.analytics",
+          "total_time": 4.87654321,
+          "user_time": 1.722636224,
+          "kernel_time": 0.069095616,
+          "cpu_usage": 1.1234567,
+          "mem_usage": 80.6543
+        }
+      ]
+    },
+    "status_code": 200,
+    "total_page": 1
+  },
+  "/api/v1/filters/scope/package/metrics": {
+    "data": null,
+    "status_code": 204
+  }
+}

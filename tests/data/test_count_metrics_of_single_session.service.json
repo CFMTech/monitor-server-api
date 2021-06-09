@@ -1,0 +1,8 @@
+{
+  "/api/v1/sessions/b572200744a298a365bbbd1a8bb0cd21/metrics/count": {
+    "data": {
+      "count": 13
+    },
+    "status_code": 200
+  }
+}

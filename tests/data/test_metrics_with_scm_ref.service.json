@@ -1,0 +1,73 @@
+{
+  "/api/v1/filters/scm/4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41/metrics": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "b83742056ad0ed304d821562b7c209ff",
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "item_start_time": "2021-02-09T13:49:00.567711",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "spif/Programmation/ptm-demo/tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.18833708763122559,
+          "user_time": 0.0024613119999998823,
+          "kernel_time": 0.003253840000000008,
+          "cpu_usage": 0.030345334909237173,
+          "mem_usage": 30.87109375
+        },
+        {
+          "session_h": "862004c16da83e7e2ce247a6c373d847",
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "item_start_time": "2021-02-09T13:08:26.934607",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "spif/Programmation/ptm-demo/tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.19268107414245605,
+          "user_time": 0.0028239359999999714,
+          "kernel_time": 0.003592896000000012,
+          "cpu_usage": 0.03330286603683654,
+          "mem_usage": 30.078125
+        },
+        {
+          "session_h": "085ec6cb63b2edf7a459b5c3fe62ffae",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T12:38:30.897487",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "spif/Programmation/ptm-demo/tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.010186910629272461,
+          "user_time": 0.0034183679999999494,
+          "kernel_time": 0.004848575999999993,
+          "cpu_usage": 0.8115261143299497,
+          "mem_usage": 30.32421875
+        },
+        {
+          "session_h": "47821a4727a078c94848b889e891317e",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T12:05:45.503913",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "spif/Programmation/ptm-demo/tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.009653091430664062,
+          "user_time": 0.011963903999999914,
+          "kernel_time": 0.00770420799999999,
+          "cpu_usage": 2.037493598944072,
+          "mem_usage": 27.890625
+        }
+      ]
+    },
+    "status_code": 200
+  }
+}

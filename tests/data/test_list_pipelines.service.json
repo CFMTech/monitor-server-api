@@ -1,0 +1,8 @@
+{
+  "/api/v1/pipelines/": {
+    "data": {
+      "pipelines": ["master-py36", "master-py38"]
+    },
+    "status_code": 200
+  }
+}

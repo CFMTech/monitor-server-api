@@ -1,0 +1,21 @@
+{
+  "/api/v1/components/math.prime/pipelines/master-py36/builds": {
+    "data": {
+      "component": "math.prime",
+      "pipeline": "master-py36",
+      "builds": ["1", "2", "3", "4", "5"],
+      "next_url": "/components/math.prime/pipelines/master-py36/builds?page=2",
+      "total_page": 2
+    },
+    "status_code": 200
+  },
+  "/api/v1/components/math.prime/pipelines/master-py36/builds?page=2": {
+    "data": {
+      "pipeline": "master-py36",
+      "builds": ["6", "7", "8", "9", "10"],
+      "prev_url": "/components/math.prime/pipelines/master-py36/builds/?page=2",
+      "total_page": 2
+    },
+    "status_code": 200
+  }
+}

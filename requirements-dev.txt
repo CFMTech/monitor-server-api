@@ -1,0 +1,12 @@
+flask
+flask-restx
+flask-sqlalchemy
+pytest
+pytest-flask
+pytest-cov
+sqlalchemy
+pandas
+requests
+requests-mock
+pyyaml
+werkzeug<2.0.0

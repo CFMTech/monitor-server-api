@@ -1,0 +1,35 @@
+{
+  "/api/v1/contexts/": {
+    "data": {
+      "contexts": [
+        {
+          "h": "28dae49c83587322a3b535612add39e3",
+          "cpu_count": 8,
+          "cpu_frequency": 2500,
+          "cpu_type": "i386",
+          "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
+          "ram_total": 16384,
+          "machine_node": "Rotondu.local",
+          "machine_type": "x86_64",
+          "machine_arch": "64bit",
+          "system_info": "Darwin - 18.7.0",
+          "python_info": "3.8.6 | packaged by conda-forge | (default, Jan 25 2021, 23:22:12) [Clang 11.0.1 ]"
+        },
+        {
+          "h": "9ae6c23d7c6b4562393385edf6da8500",
+          "cpu_count": 8,
+          "cpu_frequency": 2500,
+          "cpu_type": "i386",
+          "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
+          "ram_total": 16384,
+          "machine_node": "Rotondu.local",
+          "machine_type": "x86_64",
+          "machine_arch": "64bit",
+          "system_info": "Darwin - 18.7.0",
+          "python_info": "3.6.12 | packaged by conda-forge | (default, Dec 9 2020, 00:24:39) [GCC Clang 11.0.0 ]"
+        }
+      ]
+    },
+    "status_code": 200
+  }
+}

@@ -1,0 +1,31 @@
+about:
+  description: "API / Server for collecting results from pytest-monitor"
+  dev_url: https://github.com/js-dieu/monitor-server-api
+  doc_url: https://repository.development.cfm.fr/it-core/docs/ospo/1.0.0.rc0/
+  summary: "API / Server for collecting results from pytest-monitor"
+build:
+  number: 0
+  script: python setup.py install
+package:
+  name: monitor-api-server
+  version: 1.0.1
+requirements:
+  build: []
+  host:
+  - python
+  - pip
+  run:
+  - flask
+  - flask-restx
+  - flask-sqlalchemy
+  - sqlalchemy
+  - pandas
+  - requests
+  - pyyaml
+  - uwsgi
+  - werkzeug
+source:
+  fn: monitor-server-api-1.0.1.tar.gz
+  md5: 7ebe1c129a235b3c3f37284a34c3f3d3
+  url: /home/jdieu/projects/perso/monitor-server-api/dist/monitor-server-1.0.1.tar.gz
+
