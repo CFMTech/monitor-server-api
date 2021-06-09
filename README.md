@@ -1,6 +1,6 @@
 # monitor-server-api
 
-[![CircleCI](https://circleci.com/gh/js-dieu/monitor-server-api.svg?style=svg&circle-token=7c4f1ffe6064efb00fd37b6911c0c836f2e888b5)](https://circleci.com/gh/js-dieu/monitor-server-api)
+[![CircleCI](https://circleci.com/gh/CFMTech/monitor-server-api.svg?style=svg)](https://circleci.com/gh/CFMTech/monitor-server-api)
 
 [![License](https://img.shields.io/badge/License-MIT-Blue.svg)
 
