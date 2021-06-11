@@ -1,0 +1,114 @@
+{
+  "/api/v1/metrics/": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "7768124332f353446557878a89ef6f4c",
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "item_start_time": "2021-02-09T11:41:35.990018",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set0, expected_matrix0]",
+          "item_fs_loc": "tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.009404897689819336,
+          "user_time": 0.002093055999999982,
+          "kernel_time": 0.004456143999999995,
+          "cpu_usage": 0.6963605789236166,
+          "mem_usage": 140.12109375
+        },
+        {
+          "session_h": "7768124332f353446557878a89ef6f4c",
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "item_start_time": "2021-02-09T11:41:36.003282",
+          "item_path": "test_analytics",
+          "item": "test_compute_covariance_matrix",
+          "item_variant": "test_compute_covariance_matrix[data_set1, expected_matrix1]",
+          "item_fs_loc": "tests/test_analytics.py",
+          "kind": "function",
+          "component": "math.analytics",
+          "total_time": 0.8004801273345947,
+          "user_time": 0.722636224,
+          "kernel_time": 0.069095616,
+          "cpu_usage": 0.9890711998513638,
+          "mem_usage": 147.5234375
+        },
+        {
+          "session_h": "c4f6fe98a878755644353f2334218677",
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "item_start_time": "2021-02-09T11:41:36.809390",
+          "item_path": "test_lev",
+          "item": "test_levenshtein",
+          "item_variant": "test_levenshtein",
+          "item_fs_loc": "tests/test_lev.py",
+          "kind": "function",
+          "component": "math.distance",
+          "total_time": 678.7139070034027,
+          "user_time": 676.4789990400001,
+          "kernel_time": 1.144489664,
+          "cpu_usage": 0.998393405103165,
+          "mem_usage": 147.5390625
+        }
+      ],
+      "total_page": 1
+    },
+    "status_code": 200
+  },
+  "/api/v1/sessions/7768124332f353446557878a89ef6f4c": {
+    "data": {
+      "sessions": {
+        "h": "7768124332f353446557878a89ef6f4c",
+        "run_date": "2021-02-09T13:48:58.923094",
+        "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
+        "tags": [
+          {
+            "name": "pipeline_branch",
+            "value": "master-py38"
+          },
+          {
+            "name": "pipeline_build_no",
+            "value": "10"
+          },
+          {
+            "name": "__ci__",
+            "value": "circleci"
+          },
+          {
+            "name": "version",
+            "value": "1.4.0"
+          }
+        ]
+      }
+    },
+    "status_code": 200
+  },
+  "/api/v1/sessions/c4f6fe98a878755644353f2334218677": {
+    "data": {
+      "sessions": {
+        "h": "c4f6fe98a878755644353f2334218677",
+        "run_date": "2021-02-09T13:48:58.923094",
+        "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
+        "tags": [
+          {
+            "name": "pipeline_branch",
+            "value": "master-py38"
+          },
+          {
+            "name": "pipeline_build_no",
+            "value": "10"
+          },
+          {
+            "name": "__ci__",
+            "value": "circleci"
+          },
+          {
+            "name": "version",
+            "value": "1.4.0"
+          }
+        ]
+      }
+    },
+    "status_code": 200
+  }
+}

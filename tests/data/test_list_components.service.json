@@ -1,0 +1,8 @@
+{
+  "/api/v1/components/": {
+    "data": {
+      "components": ["math.analytics", "math.distance", "math.prime"]
+    },
+    "status_code": 200
+  }
+}

@@ -1,0 +1,26 @@
+{"db":
+  {
+    "tables": ["sessions", "metrics", "contexts"],
+    "model":
+    {
+      "sessions":
+      {
+        "create": "CREATE TABLE IF NOT EXISTS TEST_SESSIONS(\n   SESSION_H varchar(64) primary key not null unique, -- Session identifier\n   RUN_DATE varchar(64), -- Date of test run\n   SCM_ID varchar(128), -- SCM change id\n   RUN_DESCRIPTION varchar(1024)\n)",
+        "insert": "INSERT INTO TEST_SESSIONS(SESSION_H, RUN_DATE, SCM_ID, RUN_DESCRIPTION) VALUES (?,?,?,?)",
+        "insert_keys": ["session_h", "run_date", "scm_id", "run_description"]
+      },
+      "metrics":
+      {
+        "create": "CREATE TABLE IF NOT EXISTS TEST_METRICS (\n   SESSION_H varchar(64), -- Session identifier\nENV_H varchar(64), -- Environment description identifier\n   ITEM_START_TIME varchar(64), -- Effective start time of the test\n   ITEM_PATH varchar(4096), -- Path of the item, following Python import specification\n   ITEM varchar(2048), -- Name of the item\n   ITEM_VARIANT varchar(2048), -- Optional parametrization of an item.\n   ITEM_FS_LOC varchar(2048), -- Relative path from pytest invocation directory to the item's module.\n   KIND varchar(64), -- Package, Module or function\n   COMPONENT varchar(512) NULL, -- Tested component if any\n   TOTAL_TIME float, -- Total time spent running the item\n   USER_TIME float, -- time spent in user space\n   KERNEL_TIME float, -- time spent in kernel space\n   CPU_USAGE float, -- cpu usage\n   MEM_USAGE float, -- Max resident memory used.\n   FOREIGN KEY (ENV_H) REFERENCES EXECUTION_CONTEXTS(ENV_H),\n   FOREIGN KEY (SESSION_H) REFERENCES TEST_SESSIONS(SESSION_H))",
+        "insert": "INSERT INTO TEST_METRICS(SESSION_H,ENV_H,ITEM_START_TIME,ITEM_PATH,ITEM,ITEM_VARIANT,ITEM_FS_LOC,KIND,COMPONENT,TOTAL_TIME,USER_TIME,KERNEL_TIME,CPU_USAGE,MEM_USAGE) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)",
+        "insert_keys": ["session_h", "env_h", "item_start_time", "item_path", "item", "item_variant", "item_fs_loc", "kind", "component", "total_time", "user_time", "kernel_time", "cpu_usage", "mem_usage"]
+      },
+      "contexts":
+      {
+        "create": "CREATE TABLE IF NOT EXISTS EXECUTION_CONTEXTS (\n   ENV_H varchar(64) primary key not null unique,\n   CPU_COUNT integer,\n   CPU_FREQUENCY_MHZ integer,\n   CPU_TYPE varchar(64),\n   CPU_VENDOR varchar(256),\n   RAM_TOTAL_MB integer,\n   MACHINE_NODE varchar(512),\n   MACHINE_TYPE varchar(32),\n   MACHINE_ARCH varchar(16),\n   SYSTEM_INFO varchar(256),\n   PYTHON_INFO varchar(512)\n)",
+        "insert": "INSERT INTO EXECUTION_CONTEXTS(CPU_COUNT,CPU_FREQUENCY_MHZ,CPU_TYPE,CPU_VENDOR,RAM_TOTAL_MB,MACHINE_NODE,MACHINE_TYPE,MACHINE_ARCH,SYSTEM_INFO, PYTHON_INFO,ENV_H) values (?,?,?,?,?,?,?,?,?,?,?)",
+        "insert_keys": ["cpu_count", "cpu_frequency_mhz", "cpu_type", "cpu_vendor", "ram_total_mb", "machine_node", "machine_type", "machine_arch", "system_info", "python_info", "env_h"]
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+flask<2.0.0
+flask-restx
+flask-sqlalchemy
+sqlalchemy
+pandas
+requests
+pyyaml
+uwsgi
+werkzeug<2.0.0
