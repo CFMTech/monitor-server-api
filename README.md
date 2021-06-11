@@ -3,6 +3,7 @@
 [![CircleCI](https://circleci.com/gh/CFMTech/monitor-server-api.svg?style=svg)](https://circleci.com/gh/CFMTech/monitor-server-api)
 ![License](https://img.shields.io/badge/License-MIT-Blue.svg)
 [![Documentation Status](https://readthedocs.org/projects/monitor-server-api/badge/?version=latest)](https://monitor-server-api.readthedocs.io/en/latest/?badge=latest)
+![PyPI](https://img.shields.io/pypi/v/monitor-server-api)
 
 ## Features
 
