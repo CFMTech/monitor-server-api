@@ -1,0 +1,44 @@
+{
+  "/api/v1/sessions/count": {
+    "data": {
+      "count": 20
+    },
+    "status_code": 200
+  },
+  "/api/v1/contexts/count": {
+    "data": {
+      "count": 2
+    },
+    "status_code": 200
+  },
+  "/api/v1/metrics/count": {
+    "data": {
+      "count": 260
+    },
+    "status_code": 200
+  },
+  "/api/v1/components/count": {
+    "data": {
+      "count": 3
+    },
+    "status_code": 200
+  },
+  "/api/v1/sessions/b83742056ad0ed304d821562b7c209ff/metrics/count": {
+    "data": {
+      "count": 123
+    },
+    "status_code": 200
+  },
+  "/api/v1/contexts/28dae49c83587322a3b535612add39e3/metrics/count": {
+    "data": {
+      "count": 234
+    },
+    "status_code": 200
+  },
+  "/api/v1/filters/scm/babc200744a298a365bbbd1a8bb0cd21/metrics/count": {
+    "data": {
+      "count": 345
+    },
+    "status_code": 200
+  }
+}

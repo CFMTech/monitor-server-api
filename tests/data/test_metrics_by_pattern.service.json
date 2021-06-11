@@ -1,0 +1,90 @@
+{
+  "/api/v1/variants/like/not%20a%20variant/metrics":{
+    "data": null,
+    "status_code": 204
+  },
+  "/api/v1/items/like/not%20a%20test/metrics":{
+    "data": null,
+    "status_code": 204
+  },
+  "/api/v1/variants/like/test_prime%5b1/metrics": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:52:55.528818",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "test_prime[10]",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "function",
+          "component": "math.prime",
+          "total_time": 0.008001089096069336,
+          "user_time": 0.0016383999999334264,
+          "kernel_time": 0.0030099199999999993,
+          "cpu_usage": 0.7758096090971127,
+          "mem_usage": 147.5390625
+        },
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:52:55.528818",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "test_prime[1123]",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "function",
+          "component": "math.prime",
+          "total_time": 0.008001089096069336,
+          "user_time": 0.0016383999999334264,
+          "kernel_time": 0.0030099199999999993,
+          "cpu_usage": 0.7758096090971127,
+          "mem_usage": 147.5390625
+        }
+      ],
+      "total_page": 1
+    },
+    "status_code": 200
+  },
+  "/api/v1/items/like/test_p/metrics": {
+    "data": {
+      "metrics": [
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:52:55.528818",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "test_prime[10]",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "function",
+          "component": "math.prime",
+          "total_time": 0.008001089096069336,
+          "user_time": 0.0016383999999334264,
+          "kernel_time": 0.0030099199999999993,
+          "cpu_usage": 0.7758096090971127,
+          "mem_usage": 147.5390625
+        },
+        {
+          "session_h": "c9dd28cd8bb77f420a00dd229cc87f53",
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "item_start_time": "2021-02-09T11:52:55.528818",
+          "item_path": "test_prime",
+          "item": "test_prime",
+          "item_variant": "test_prime[1123]",
+          "item_fs_loc": "tests/test_prime.py",
+          "kind": "function",
+          "component": "math.prime",
+          "total_time": 0.008001089096069336,
+          "user_time": 0.0016383999999334264,
+          "kernel_time": 0.0030099199999999993,
+          "cpu_usage": 0.7758096090971127,
+          "mem_usage": 147.5390625
+        }
+      ],
+      "total_page": 1
+    },
+    "status_code": 200
+  }
+}

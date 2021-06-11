@@ -1,0 +1,69 @@
+{
+  "/api/v1/pipelines/master-py36/builds/4/sessions": {
+    "data": {
+      "pipeline": "master-py36",
+      "build": "4",
+      "sessions": [
+        "601eb85a006d6170e25523a167dbb39e3a1134f7",
+        "4e79321b7086869194e509e2f8dcdf7f58832351"
+      ]
+    },
+    "status_code": 200
+  },
+  "/api/v1/sessions/601eb85a006d6170e25523a167dbb39e3a1134f7": {
+    "data": {
+      "sessions": {
+        "h": "601eb85a006d6170e25523a167dbb39e3a1134f7",
+        "run_date": "2021-02-09T13:48:58.923094",
+        "scm_ref": "40d4766c57e87c33ae2a58f8c3a801d0edc0352e",
+        "tags": [
+          {
+            "name": "pipeline_branch",
+            "value": "master-py36"
+          },
+          {
+            "name": "pipeline_build_no",
+            "value": "4"
+          },
+          {
+            "name": "__ci__",
+            "value": "circleci"
+          },
+          {
+            "name": "version",
+            "value": "1.4.0"
+          }
+        ]
+      }
+    },
+    "status_code": 200
+  },
+  "/api/v1/sessions/4e79321b7086869194e509e2f8dcdf7f58832351": {
+    "data": {
+      "sessions": {
+        "h": "4e79321b7086869194e509e2f8dcdf7f58832351",
+        "run_date": "2021-02-09T13:48:58.923094",
+        "scm_ref": "606f6cff460dcd8b546d0cbd55b77da475318316",
+        "tags": [
+          {
+            "name": "pipeline_branch",
+            "value": "master-py36"
+          },
+          {
+            "name": "pipeline_build_no",
+            "value": "4"
+          },
+          {
+            "name": "__ci__",
+            "value": "circleci"
+          },
+          {
+            "name": "version",
+            "value": "1.4.0"
+          }
+        ]
+      }
+    },
+    "status_code": 200
+  }
+}

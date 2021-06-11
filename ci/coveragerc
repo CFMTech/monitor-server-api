@@ -1,0 +1,10 @@
+[run]
+source = monitor_api/
+         monitor_server/
+omit = tests/test_*.py
+       setup.py
+       monitor_server/app.py
+       monitor_server/uwsgi.py
+
+[html]
+directory = ./build/public

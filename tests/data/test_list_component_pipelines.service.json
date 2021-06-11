@@ -1,0 +1,10 @@
+{
+  "/api/v1/components/math.prime/pipelines": {
+    "data": {
+      "component": "math.prime",
+      "pipelines": ["master-py36", "master-py38"],
+      "total_page": 1
+    },
+    "status_code": 200
+  }
+}

@@ -1,0 +1,9 @@
+include LICENSE
+include requirements.txt
+include README.md
+
+recursive-include monitor_server/templates *
+
+recursive-exclude * __pycache__
+recursive-exclude * *.py[co]
+recursive-exclude monitor_server.egg-info *

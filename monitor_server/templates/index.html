@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+
+<html lang="en-US" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css"
+              rel="stylesheet"
+              integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x"
+              crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+              crossorigin="anonymous"
+              referrerpolicy="no-referrer" />
+        <style>
+            code {
+                white-space: pre;
+            }
+            .shell {
+                color: whitesmoke;
+            }
+            .json-id {
+                color: limegreen;
+                display: inline;
+            }
+            .json-op {
+                color: silver;
+                display: inline;
+            }
+            .json-str-value {
+                color: coral;
+                display: inline;
+            }
+            .json-number-value {
+                color: royalblue;
+                display: inline;
+            }
+            .python-keyword {
+                color: orangered;
+                display: inline;
+            }
+            .python-obj {
+                color: orange;
+                display: inline;
+            }
+            .python-str{
+                color: lightskyblue;
+                display: inline;
+            }
+            .python {
+                color: silver;
+                display: inline;
+            }
+            .python-comment {
+                color: slategrey;
+                display: inline;
+            }
+        </style>
+        <title>Monitor Server API</title>
+    </head>
+    <body>
+        <div class="container-lg" style="width: 60%; position: relative; z-index: 0">
+            <br>
+            <h1 class="text-center"> Welcome!</h1>
+                <br>
+                <br>
+                <p>I am the monitor-server. I will assist you in querying and storing your
+                    <a href="https://github.com/CFMTech/pytest-monitor">pytest-monitor</a> runs results.
+                    <br>I provide
+                    <ul>
+                        <li>a <em>REST</em> API, compliant with
+                            <a href="https://swagger.io/specification/">OpenAPI Specification (OAS)</a>,
+                        you can use for serving/storing metrics from multiple
+                            <a href="https://github.com/CFMTech/pytest-monitor">pytest-monitor</a> runs.
+                        </li>
+                        <li>support for <a href="https://github.com/pytest-dev/pytest-xdist">pytest-xdist</a>
+                        which is not natively supported by <a href="https://github.com/CFMTech/pytest-monitor">pytest-monitor</a>.
+                        </li>
+                    </ul>
+                    To exploit me:
+                    <ol class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Use the REST API I provide to read data</div>
+                                Consult my endpoints <a href="{{request.url_root}}api/v1/docs"><i class="fas fa-code"></i></a>
+                            </div>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">Use the <em>Monitor API</em></div>
+                                Read the docs here <i class="fas fa-book"></i>
+                            </div>
+                        </li>
+                    </ol>
+                </p>
+                <br>
+                <br>
+                <h4> Statistics </h4>
+                <div class="container">
+                    <div class="row">
+                        <div class="col text-center">
+                            <a type="button" href="#Metrics" class="btn btn-md btn-secondary">
+                                Metrics <span class="badge bg-info text-dark">{{metric_count}}</span>
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <a type="button" href="#Sessions" class="btn btn-md btn-secondary">
+                                Sessions <span class="badge bg-info text-dark">{{session_count}}</span>
+                            </a>
+                        </div>
+                        <div class="col text-center">
+                            <a type="button" href="#Contexts" class="btn btn-md btn-secondary">
+                                Execution Contexts <span class="badge bg-info text-dark">{{context_count}}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <br>
+<div  id="Metrics"></div>
+                <h4>Extracting metrics</h4>
+                <nav class="nav nav-tabs">
+                    <a class="nav-item nav-link active" href="#metrics_from_server" data-bs-toggle="tab">REST API</a>
+                    <a class="nav-item nav-link" href="#metrics_from_api" data-bs-toggle="tab">Monitor API</a>
+                    <a class="nav-item nav-link" href="#metric_from_bash" data-bs-toggle="tab">Bash</a>
+                </nav>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="metrics_from_server">
+                        <br>
+                        <h6> Synopsis </h6>
+                            <p>List all stored metrics the monitor-server instance has access to.</p>
+                            <div class="text-center">
+                                <p><button class="badge badge-dark text-dark">GET</button> /api/v1/metrics/</p>
+                            </div>
+                        <h5>Parameters</h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Attribute</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Required</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">page</th>
+                                    <td>integer</td>
+                                    <td>No</td>
+                                    <td>Directly jump to the requested page. The following semantic is supported for the page parameter:
+                                        <ul>
+                                            <li>if page is provided as a positive number, the page whose index matches the requested value is returned</li>
+                                            <li>if page is given as a negative number, then, negative index is used, meaning that pages are indexed from the end.</li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <h5>Values</h5>
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Attribute</th>
+                                    <th scope="col">Type</th>
+                                    <th scope="col">Required</th>
+                                    <th scope="col">Description</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="col">session_h</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Session id attached to the test</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">ctx_h</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Context id attached to the test</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">item_start_time</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Effective start time of the test. Format: iso8681</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">item_path</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Item path using python import spectification.</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">item</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Qualified name of the test</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">item_variant</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Fully qualified name of the test (with parametrization info)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">item_fs_loc</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Relative path from pytest invocation directory to the item's module</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">kind</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Item type (function, module, ...)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">component</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Logical entity to which the test belong (user defined).</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">wall_time</th>
+                                    <td>float</td>
+                                    <td>Yes</td>
+                                    <td>Total time spent running the test (in seconds)</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">user_time</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Total time spent running in user space (in seconds). </td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">krnl_time</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Total time spent running in kernel space (in seconds). </td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">cpu_usage</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Percentage of CPU used while the test ran</td>
+                                </tr>
+                                <tr>
+                                    <th scope="col">mem_usage</th>
+                                    <td>string</td>
+                                    <td>Yes</td>
+                                    <td>Memory used while running the test (in MB).</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="tab-pane" id="metrics_from_api">
+                        <h6>Scenario</h6>
+                        <p><em>You have monitored some tests, and now you want to read collected metrics. </em></p>
+                        <p>For doing so, let's introduce the <strong>Monitor</strong> object.
+                            It will be your only entry point to every interaction with either your remote server or a local database.
+                        <br>
+                        <div class="bg-dark">
+<code class="python-keyword">import</code><code class="python"> monitor_api.monitor</code><code class="python-keyword"> import </code><code class="python"> Monitor
+
+URL = </code><code class="python-str"> '{{request.url_root}}'
+</code><code class="python">mon = </code><code class="python-obj"> Monitor</code><code class="python">(URL)</code>
+<code class="python-comment">
+# Intermediate collection of entities. Useful for raw manipulation.</code>
+<code class="python">collection_of_metrics = mon.list_metrics()
+</code><code class="python-comment"># Convertion to pandas.Dataframe. Useful for in-depth analysis and plotting.</code>
+<code class="python">df = collection_of_metrics.to_df()
+</code>
+                        </div>
+                        The <em>Monitor</em> object uses a small semantic around actions you can perform:
+                        <ul>
+                            <li>
+                                <em>count</em> is used to obtain integers and roughly aims at counting entities.
+                            </li>
+                            <li>
+                                <em>count</em> aims at providing an exhaustive listing of entities for specific resources such as components, variants and so on.
+                            </li>
+                            <li>
+                                <em>count</em> get is used to obtain a fully described, single entity
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-pane" id="metric_from_bash">
+                        <br>
+                        <h6>With the help of <em>curl</em> and <em>jq</em></h6>
+                        <div class="bg-dark">
+                            <code class="shell">bash $> curl -X GET {{request.url_root}}api/v1/metrics/ | jq
+</code><code class="json-op">{
+</code>
+<code class="json-id">  "metrics"</code><code class="json-op">: [
+   {
+     </code><code class="json-id">"session_h"</code><code class="json-op">: </code><code class="json-str-value">"0041724ff4e0adac62b70b4f810c79fc5ad8ba5b"</code><code class="json-op">,
+     </code><code class="json-id">"context_h"</code><code class="json-op">: </code><code class="json-str-value">"e9188c68dd9ddeccd0a2f59422d16a2bf7337683"</code><code class="json-op">,
+     </code><code class="json-id">"item_start_time"</code><code class="json-op">: </code><code class="json-str-value">"2020-12-04T23:18:15.661016"</code><code class="json-op">,
+     </code><code class="json-id">"item_path"</code><code class="json-op">: </code><code class="json-str-value">"tests.test_file"</code><code class="json-op">,
+     </code><code class="json-id">"item"</code><code class="json-op">: </code><code class="json-str-value">"test_that"</code><code class="json-op">,
+     </code><code class="json-id">"item_variant"</code><code class="json-op">: </code><code class="json-str-value">"test_that[]"</code><code class="json-op">,
+     </code><code class="json-id">"item_fs_loc"</code><code class="json-op">: </code><code class="json-str-value">"tests/test_file.py"</code><code class="json-op">,
+     </code><code class="json-id">"kind"</code><code class="json-op">: </code><code class="json-str-value">"function"</code><code class="json-op">,
+     </code><code class="json-id">"component"</code><code class="json-op">: </code><code class="json-str-value">"test_component"</code><code class="json-op">,
+     </code><code class="json-id">"total_time"</code><code class="json-op">: </code><code class="json-number-value">10</code><code class="json-op">,
+     </code><code class="json-id">"user_time"</code><code class="json-op">: </code><code class="json-number-value">2.4</code><code class="json-op">,
+     </code><code class="json-id">"kernel_time"</code><code class="json-op">: </code><code class="json-number-value">0.1</code><code class="json-op">,
+     </code><code class="json-id">"cpu_usage"</code><code class="json-op">: </code><code class="json-number-value">35.68</code><code class="json-op">,
+     </code><code class="json-id">"mem_usage"</code><code class="json-op">: </code><code class="json-number-value">56.87</code><code class="json-op">
+   </code><code class="json-op">}
+  ],
+  </code><code class="json-id">"prev_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/metrics/?page=1"</code><code class="json-op">,
+  </code><code class="json-id">"next_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/metrics/?page=3"</code><code class="json-op">,
+  </code><code class="json-id">"total_page"</code><code class="json-op">: </code><code class="json-number-value">3</code><code class="json-op">
+}</code>
+                    </div>
+                </div>
+            </div>
+<div  id="Sessions"></div>
+                <h4>Extracting sessions</h4>
+                <br><br>
+            <nav class="nav nav-tabs">
+                <a class="nav-item nav-link active" href="#sessions_from_server" data-bs-toggle="tab">REST API</a>
+                <a class="nav-item nav-link" href="#sessions_from_api" data-bs-toggle="tab">Monitor API</a>
+                <a class="nav-item nav-link" href="#sessions_from_bash" data-bs-toggle="tab">Bash</a>
+            </nav>
+            <div class="tab-content">
+                <div class="tab-pane active" id="sessions_from_server">
+                    <br>
+                    <h6> Synopsis </h6>
+                    <p>List all stored sessions the monitor-server instance has access to.</p>
+                    <div class="text-center">
+                        <p><button class="badge badge-dark text-dark">GET</button> /api/v1/sessions/</p>
+                    </div>
+                    <h5>Parameters</h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Required</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">page</th>
+                            <td>integer</td>
+                            <td>No</td>
+                            <td>Directly jump to the requested page. The following semantic is supported for the page parameter:
+                                <ul>
+                                    <li>if page is provided as a positive number, the page whose index matches the requested value is returned</li>
+                                    <li>if page is given as a negative number, then, negative index is used, meaning that pages are indexed from the end.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h5>Values</h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Required</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="col">h</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Session identifier.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">run_date</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Date and time when test session has started. Format: iso8601.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">scm_ref</th>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Reference to the SCM if any.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">description</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Dictionary of tags:
+                                <ul>
+                                    <li>All elements are of type string.</li>
+                                    <li>Only dictionaries with a depth of 1 are accepted.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="sessions_from_api">
+                    <h6>Scenario</h6>
+                    <p><em>You have monitored some tests, and now you want to extract all test sessions. </em></p>
+                    <p>For doing so, let's introduce the <strong>Monitor</strong> object.
+                        It will be your only entry point to every interaction with either your remote server or a local database.
+                        <br>
+                    <div class="bg-dark">
+<code class="python-keyword">import</code><code class="python"> monitor_api.monitor</code><code class="python-keyword"> import </code><code class="python"> Monitor
+
+URL = </code><code class="python-str"> '{{request.url_root}}'
+</code><code class="python">mon = </code><code class="python-obj"> Monitor</code><code class="python">(URL)</code>
+<code class="python-comment"># Intermediate collection of entities. Useful for raw manipulation.</code>
+<code class="python">collection_of_session = mon.list_sessions()
+</code><code class="python-comment"># Convertion to pandas.Dataframe. Useful for in-depth analysis and plotting.</code>
+<code class="python">df = collection_of_session.to_df()
+</code>
+                    </div>
+                    The <em>Monitor</em> object uses a small semantic around actions you can perform:
+                    <ul>
+                        <li>
+                            <em>count</em> is used to obtain integers and roughly aims at counting entities.
+                        </li>
+                        <li>
+                            <em>count</em> aims at providing an exhaustive listing of entities for specific resources such as components, variants and so on.
+                        </li>
+                        <li>
+                            <em>count</em> get is used to obtain a fully described, single entity
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="sessions_from_bash">
+                    <br>
+                    <h6>With the help of <em>curl</em> and <em>jq</em></h6>
+                    <div class="bg-dark">
+                        <code class="shell">bash $> curl -X GET {{request.url_root}}api/v1/metrics/ | jq
+</code><code class="json-op">{
+</code><code class="json-id">  "sessions"</code><code class="json-op">: [
+    {
+</code><code class="json-id">      "session_h"</code><code class="json-op">: </code><code class="json-str-value">"0041724ff4e0adac62b70b4f810c79fc5ad8ba5b"</code><code class="json-op">,
+</code><code class="json-id">      "run_date"</code><code class="json-op">: </code><code class="json-str-value">"2020-12-04T23:18:15.661016"</code><code class="json-op">,
+</code><code class="json-id">      "run_date"</code><code class="json-op">: </code><code class="json-str-value">"4914d195225cf6b1c5a160c555b6948ea1ba2bcd"</code><code class="json-op">,
+</code><code class="json-id">      "tags"</code><code class="json-op">: </code><code class="json-op">[
+        {
+          </code><code class="json-id">"key"</code><code class="json-op"> : </code><code class="json-str-value">"numpy"</code><code class="json-op"> ,
+          </code><code class="json-id">"value"</code><code class="json-op"> : </code><code class="json-str-value"> "1.18.2"</code><code class="json-op"> ,
+        }
+      ]
+    },
+  ],
+  </code><code class="json-id">"prev_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/sessions/?page=1"</code><code class="json-op">,
+  </code><code class="json-id">"next_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/sessions/?page=3"</code><code class="json-op">,
+  </code><code class="json-id">"total_page"</code><code class="json-op">: </code><code class="json-number-value">3</code><code class="json-op">
+}</code>
+                    </div>
+                </div>
+            </div>
+<div  id="Contexts"></div>
+            <h4>Extracting contexts</h4>
+            <nav class="nav nav-tabs">
+                <a class="nav-item nav-link active" href="#contexts_from_server" data-bs-toggle="tab">REST API</a>
+                <a class="nav-item nav-link" href="#contexts_from_api" data-bs-toggle="tab">Monitor API</a>
+                <a class="nav-item nav-link" href="#contexts_from_bash" data-bs-toggle="tab">Bash</a>
+            </nav>
+            <div class="tab-content">
+                <div class="tab-pane active" id="contexts_from_server">
+                    <br>
+                    <h6> Synopsis </h6>
+                    <p>List all stored execution contexts the monitor-server instance has access to.</p>
+                    <div class="text-center">
+                        <p><button class="badge badge-dark text-dark">GET</button> /api/v1/contexts/</p>
+                    </div>
+                    <h5>Parameters</h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Required</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="row">page</th>
+                            <td>integer</td>
+                            <td>No</td>
+                            <td>Directly jump to the requested page. The following semantic is supported for the page parameter:
+                                <ul>
+                                    <li>if page is provided as a positive number, the page whose index matches the requested value is returned</li>
+                                    <li>if page is given as a negative number, then, negative index is used, meaning that pages are indexed from the end.</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <h5>Values</h5>
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th scope="col">Attribute</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Required</th>
+                            <th scope="col">Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <th scope="col">h</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Context id attached to the test</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">cpu_count</th>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>Number of CPUs available on the host</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">cpu_frequency</th>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>Nominal frequency of CPUs, in MHz</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">cpu_type</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Architecture of the CPU</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">cpu_vendor</th>
+                            <td>string</td>
+                            <td>No</td>
+                            <td>Information string about the CPU constructor</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">ram_total</th>
+                            <td>integer</td>
+                            <td>Yes</td>
+                            <td>Total amount of RAM available, in MB</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">mac_node</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Fully Qualified Domain Name (FQDN) of the machine.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">mac_type</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Machine architecture.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">sys_info</th>
+                            <td>string</td>
+                            <td>Yes</td>
+                            <td>Short string about current OS level.</td>
+                        </tr>
+                        <tr>
+                            <th scope="col">py_info</th>
+                            <td>float</td>
+                            <td>Yes</td>
+                            <td>Short string about the python interpreter used during your tests.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane" id="contexts_from_api">
+                    <h6>Scenario</h6>
+                    <p><em>You have monitored some tests, and now you want to extract information about the machines used. </em></p>
+                    <p>For doing so, let's introduce the <strong>Monitor</strong> object.
+                        It will be your only entry point to every interaction with either your remote server or a local database.
+                        <br>
+                    <div class="bg-dark">
+<code class="python-keyword">import</code><code class="python"> monitor_api.monitor</code><code class="python-keyword"> import </code><code class="python"> Monitor
+
+URL = </code><code class="python-str"> '{{request.url_root}}'
+</code><code class="python">mon = </code><code class="python-obj"> Monitor</code><code class="python">(URL)</code>
+<code class="python-comment">
+# Intermediate collection of entities. Useful for raw manipulation.</code>
+<code class="python">collection_of_contexts = mon.list_contexts()
+</code><code class="python-comment"># Convertion to pandas.Dataframe. Useful for in-depth analysis and plotting.</code>
+<code class="python">df = collection_of_contexts.to_df()
+</code>
+                    </div>
+                    The <em>Monitor</em> object uses a small semantic around actions you can perform:
+                    <ul>
+                        <li>
+                            <em>count</em> is used to obtain integers and roughly aims at counting entities.
+                        </li>
+                        <li>
+                            <em>count</em> aims at providing an exhaustive listing of entities for specific resources such as components, variants and so on.
+                        </li>
+                        <li>
+                            <em>count</em> get is used to obtain a fully described, single entity
+                        </li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="contexts_from_bash">
+                    <br>
+                    <h6>With the help of <em>curl</em> and <em>jq</em></h6>
+                    <div class="bg-dark">
+                        <code class="shell">bash $> curl -X GET {{request.url_root}}api/v1/metrics/ | jq
+</code><code class="json-op">{
+</code><code class="json-id">  "contexts"</code><code class="json-op">: [
+    {
+        </code><code class="json-id">"h"</code><code class="json-op">: </code><code class="json-str-value">"0041724ff4e0adac62b70b4f810c79fc5ad8ba5b"</code><code class="json-op">,
+        </code><code class="json-id">"cpu_count"</code><code class="json-op">: </code><code class="json-number-value">8</code><code class="json-op">,
+        </code><code class="json-id">"cpu_frequency"</code><code class="json-op">: </code><code class="json-number-value">2500</code><code class="json-op">,
+        </code><code class="json-id">"cpu_type"</code><code class="json-op">: </code><code class="json-str-value">"i386"</code><code class="json-op">,
+        </code><code class="json-id">"cpu_vendor"</code><code class="json-op">: </code><code class="json-str-value">""</code><code class="json-op">,
+        </code><code class="json-id">"ram_total"</code><code class="json-op">: </code><code class="json-number-value">16384</code><code class="json-op">,
+        </code><code class="json-id">"machine_node"</code><code class="json-op">: </code><code class="json-str-value">"host.name.org"</code><code class="json-op">,
+        </code><code class="json-id">"machine_type"</code><code class="json-op">: </code><code class="json-str-value">"x86_64"</code><code class="json-op">,
+        </code><code class="json-id">"machine_arch"</code><code class="json-op">: </code><code class="json-str-value">"64bit"</code><code class="json-op">,
+        </code><code class="json-id">"system_info"</code><code class="json-op">: </code><code class="json-str-value">"Linux - 3.10.0-693.el7.x86_64"</code><code class="json-op">,
+        </code><code class="json-id">"python_info"</code><code class="json-op">: </code><code class="json-str-value">"3.6.10 packaged by conda-forge"</code><code class="json-op">,
+    </code><code class="json-op">}
+  ],
+  </code><code class="json-id">"prev_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/contexts/?page=1"</code><code class="json-op">,
+  </code><code class="json-id">"next_url"</code><code class="json-op">: </code><code class="json-str-value">"/api/v1/contexts/?page=3"</code><code class="json-op">,
+  </code><code class="json-id">"total_page"</code><code class="json-op">: </code><code class="json-number-value">3</code><code class="json-op">
+}</code>
+                    </div>
+                </div>
+            </div>
+            <div><br><br><br><br></div>
+            <footer class="text-lg-start text-dark" style="position: fixed; bottom: 0; width: 60%; left: 20%; z-index: 999;">
+                <div class="text-center p-3" style="background: white; border-top: thick double black;">
+                    <em>monitor-server-api@v{{version}}</em>
+                    <a href="https://github.com/js-dieu/monitor-server-api" style="text-decoration: none; color: inherit;">
+                        <i class="fab fa-github"></i>
+                    </a>
+                </div>
+            </footer>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+                integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+                crossorigin="anonymous"></script>
+    </body>
+</html>

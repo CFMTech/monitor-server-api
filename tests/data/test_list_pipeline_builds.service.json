@@ -1,0 +1,20 @@
+{
+  "/api/v1/pipelines/master-py36/builds": {
+    "data": {
+      "pipeline": "master-py36",
+      "builds": ["1", "2", "3", "4", "5"],
+      "next_url": "/pipelines/master-py36/builds?page=2",
+      "total_page": 2
+    },
+    "status_code": 200
+  },
+  "/api/v1/pipelines/master-py36/builds?page=2": {
+    "data": {
+      "pipeline": "master-py36",
+      "builds": ["6", "7", "8", "9", "10"],
+      "prev_url": "/pipelines/master-py36/builds/?page=2",
+      "total_page": 2
+    },
+    "status_code": 200
+  }
+}
