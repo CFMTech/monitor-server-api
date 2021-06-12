@@ -34,6 +34,7 @@ bash $> uwsgi --http 0.0.0.0:8050 --workers 8 --process 8 --master
 If you prefer using conda
 ```bash
 bash $> conda activate <your monitor-server-api env>
+bash $> # Setup the server to listen on port 8080, 8 workers, 60s max per request and using sqlite
 bash $> launch-monitor-server.sh -p 8080 -t 60 -w 8 -u sqlite:////path/to/db
 ```
 
