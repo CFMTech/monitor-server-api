@@ -42,7 +42,7 @@ You can validate that the server runs correctly by going to the root page of the
 
 ## Documentation
 
-> A full documentation with use cases and example is [available](https://link.to.readthedocs.org).
+> A full documentation with use cases and example is [available](https://monitor-server-api.readthedocs.io/en/latest/?badge=latest).
 
 ## Installation
 Review the following installation instructions along with basic setup instructions.
