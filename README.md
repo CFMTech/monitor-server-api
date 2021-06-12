@@ -1,9 +1,12 @@
 # monitor-server-api
 
-[![CircleCI](https://circleci.com/gh/CFMTech/monitor-server-api.svg?style=svg)](https://circleci.com/gh/CFMTech/monitor-server-api)
+[![CircleCI](https://circleci.com/gh/CFMTech/monitor-server-api.svg?style=shield)](https://circleci.com/gh/CFMTech/monitor-server-api)
 ![License](https://img.shields.io/badge/License-MIT-Blue.svg)
 [![Documentation Status](https://readthedocs.org/projects/monitor-server-api/badge/?version=latest)](https://monitor-server-api.readthedocs.io/en/latest/?badge=latest)
-![PyPI](https://img.shields.io/pypi/v/monitor-server-api)
+[![PyPI](https://img.shields.io/pypi/v/monitor-server-api)](https://pypi.org/project/monitor-server-api/1.0.0/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/monitor-server-api)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/monitor-server-api/badges/platforms.svg)](https://anaconda.org/conda-forge/monitor-server-api)
+[![Anaconda-Server Badge](https://anaconda.org/conda-forge/monitor-server-api/badges/version.svg)](https://anaconda.org/conda-forge/monitor-server-api)
 
 ## Features
 
