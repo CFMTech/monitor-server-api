@@ -36,14 +36,18 @@ shared: &shared
 workflows:
     standard:
         jobs:
+            - monitor-py36:
+              filters:
+                tags:
+                  only: /.*/
             - monitor-py37:
-                filters:
-                    tags:
-                        only: /.*/
+              filters:
+                 tags:
+                   only: /.*/
             - monitor-py38:
                 filters:
-                    tags:
-                        only: /.*/
+                  tags:
+                    only: /.*/
             - deploy:
                 requires:
                     - monitor-py36
