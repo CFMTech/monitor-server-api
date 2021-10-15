@@ -12,6 +12,7 @@ import requests
 
 
 def translate(context: Optional[Dict[str, Any]] = None,
+              session: Optional[Dict[str, Any]] = None,
               metric: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     if context is not None:
         d = dict(h=context['h'],
@@ -25,6 +26,12 @@ def translate(context: Optional[Dict[str, Any]] = None,
                  mac_arch=context['machine_arch'],
                  sys_info=context['system_info'],
                  py_info=context['python_info'])
+    elif session is not None:
+        d = dict(h=session['session_h'],
+                 run_date=session['run_date'],
+                 tags=session['tags'],
+                 scm_ref=session['scm_ref']
+                 )
     else:
         d = dict(context_h=metric['context_h'],
                  session_h=metric['session_h'],
@@ -118,7 +125,7 @@ class Remote(Dialect):
             j = self.__session.get(self._make_url(f'/sessions/{session_h}'))
             if j.status_code == HTTPStatus.NO_CONTENT:
                 return None
-            return Session(**j.json()['sessions'])
+            return Session(**translate(session=j.json()['sessions']))
         except requests.RequestException:
             return None
 
