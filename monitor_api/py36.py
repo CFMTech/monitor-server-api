@@ -25,7 +25,7 @@ def fromisoformat(date_string):
     else:
         time_components = [0, 0, 0, 0, None]
 
-    return datetime.datetime(*(date_components + time_components))
+    return datetime(*(date_components + time_components))
 
 
 def _parse_isoformat_date(dtstr):
