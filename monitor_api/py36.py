@@ -1,8 +1,9 @@
+from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
 
 
-def fromisoformat(cls, date_string):
+def fromisoformat(date_string):
     """Construct a datetime from the output of datetime.isoformat()."""
     if not isinstance(date_string, str):
         raise TypeError('fromisoformat: argument must be str')
@@ -24,7 +25,7 @@ def fromisoformat(cls, date_string):
     else:
         time_components = [0, 0, 0, 0, None]
 
-    return cls(*(date_components + time_components))
+    return datetime.datetime(*(date_components + time_components))
 
 
 def _parse_isoformat_date(dtstr):
