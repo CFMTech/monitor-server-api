@@ -36,16 +36,21 @@ shared: &shared
 workflows:
     standard:
         jobs:
+            - monitor-py36:
+              filters:
+                tags:
+                  only: /.*/
             - monitor-py37:
-                filters:
-                    tags:
-                        only: /.*/
+              filters:
+                 tags:
+                   only: /.*/
             - monitor-py38:
                 filters:
-                    tags:
-                        only: /.*/
+                  tags:
+                    only: /.*/
             - deploy:
                 requires:
+                    - monitor-py36
                     - monitor-py37
                     - monitor-py38
                 filters:
@@ -66,6 +71,10 @@ workflows:
 
 # Jobs definition
 jobs:
+    monitor-py36:
+        environment:
+            CI_PYTHON: 'python=3.6'
+        <<: *shared
     monitor-py37:
         environment:
             CI_PYTHON: 'python=3.7'
