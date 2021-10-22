@@ -106,7 +106,8 @@ Objective
     metrics = Metrics()
     for build in last_3_builds:
         sessions = mon.list_build_sessions(PIPELINE, build)
-        m = mon.list_session_metrics(sessions).filter_with(keep_only_test_that)
-        metrics = metrics.merge(m)
+        for session_id in sessions:
+            m = mon.list_session_metrics(session_id).filter_with(keep_only_test_that)
+            metrics = metrics.merge(m)
     print(len(metrics))
 
