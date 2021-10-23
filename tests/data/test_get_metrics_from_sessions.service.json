@@ -1,7 +1,8 @@
 {
   "/api/v1/sessions/b83742056ad0ed304d821562b7c209ff/metrics": {
     "data": {
-      "metrics": [        {
+      "metrics": [
+        {
           "session_h": "b83742056ad0ed304d821562b7c209ff",
           "context_h": "9ae6c23d7c6b4562393385edf6da8500",
           "item_start_time": "2021-02-09T11:52:55.528818",
@@ -66,41 +67,43 @@
   },
   "/api/v1/sessions/b83742056ad0ed304d821562b7c209ff": {
     "data": {
-      "sessions": {
-        "session_h": "b83742056ad0ed304d821562b7c209ff",
-        "run_date": "2021-02-09T13:48:58.923094",
-        "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
-        "tags": [
-          {
-            "name": "pipeline_branch",
-            "value": "master-py38"
-          },
-          {
-            "name": "pipeline_build_no",
-            "value": "10"
-          },
-          {
-            "name": "__ci__",
-            "value": "circleci"
-          },
-          {
-            "name": "version",
-            "value": "1.4.0"
-          },
-          {
-            "name": "numpy",
-            "value": "1.20.0"
-          },
-          {
-            "name": "python",
-            "value": "3.8"
-          },
-          {
-            "name": "origin",
-            "value": "conda-forge"
-          }
-        ]
-      }
+      "sessions": [
+        {
+          "session_h": "b83742056ad0ed304d821562b7c209ff",
+          "run_date": "2021-02-09T13:48:58.923094",
+          "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
+          "tags": [
+            {
+              "name": "pipeline_branch",
+              "value": "master-py38"
+            },
+            {
+              "name": "pipeline_build_no",
+              "value": "10"
+            },
+            {
+              "name": "__ci__",
+              "value": "circleci"
+            },
+            {
+              "name": "version",
+              "value": "1.4.0"
+            },
+            {
+              "name": "numpy",
+              "value": "1.20.0"
+            },
+            {
+              "name": "python",
+              "value": "3.8"
+            },
+            {
+              "name": "origin",
+              "value": "conda-forge"
+            }
+          ]
+        }
+      ]
     },
     "status_code": 200
   },

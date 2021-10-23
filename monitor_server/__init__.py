@@ -9,7 +9,7 @@ from flask_restx import Api
 import os
 import pathlib
 
-__version__ = '1.0.1'
+__version__ = '1.0.2'
 
 
 def _create_monitor_server():

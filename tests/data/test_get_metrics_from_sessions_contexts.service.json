@@ -1,57 +1,64 @@
 {
   "/api/v1/contexts/28dae49c83587322a3b535612add39e3": {
     "data": {
-      "h": "28dae49c83587322a3b535612add39e3",
-      "cpu_count": 8,
-      "cpu_frequency": 2500,
-      "cpu_type": "i386",
-      "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
-      "ram_total": 16384,
-      "machine_node": "Rotondu.local",
-      "machine_type": "x86_64",
-      "machine_arch": "64bit",
-      "system_info": "Darwin - 18.7.0",
-      "python_info": "3.8.6 | packaged by conda-forge | (default, Jan 25 2021, 23:22:12) [Clang 11.0.1 ]"
+      "contexts": [
+        {
+          "context_h": "28dae49c83587322a3b535612add39e3",
+          "cpu_count": 8,
+          "cpu_frequency": 2500,
+          "cpu_type": "i386",
+          "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
+          "ram_total": 16384,
+          "machine_node": "Rotondu.local",
+          "machine_type": "x86_64",
+          "machine_arch": "64bit",
+          "system_info": "Darwin - 18.7.0",
+          "python_info": "3.8.6 | packaged by conda-forge | (default, Jan 25 2021, 23:22:12) [Clang 11.0.1 ]"
+        }
+      ]
     },
     "status_code": 200
   },
   "/api/v1/sessions/7768124332f353446557878a89ef6f4c": {
     "data": {
-      "sessions": {
-        "session_h": "7768124332f353446557878a89ef6f4c",
-        "run_date": "2021-02-09T13:48:58.923094",
-        "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
-        "tags": [
-          {
-            "name": "pipeline_branch",
-            "value": "master-py38"
-          },
-          {
-            "name": "pipeline_build_no",
-            "value": "10"
-          },
-          {
-            "name": "__ci__",
-            "value": "circleci"
-          },
-          {
-            "name": "version",
-            "value": "1.4.0"
-          },
-          {
-            "name": "numpy",
-            "value": "1.20.0"
-          },
-          {
-            "name": "python",
-            "value": "3.8"
-          },
-          {
-            "name": "origin",
-            "value": "conda-forge"
-          }
-        ]
-      }
+      "sessions":
+      [
+        {
+          "session_h": "7768124332f353446557878a89ef6f4c",
+          "run_date": "2021-02-09T13:48:58.923094",
+          "scm_ref": "4c3b3ca9e975a0a5eacd5d802d03c4ba690e8e41",
+          "tags": [
+            {
+              "name": "pipeline_branch",
+              "value": "master-py38"
+            },
+            {
+              "name": "pipeline_build_no",
+              "value": "10"
+            },
+            {
+              "name": "__ci__",
+              "value": "circleci"
+            },
+            {
+              "name": "version",
+              "value": "1.4.0"
+            },
+            {
+              "name": "numpy",
+              "value": "1.20.0"
+            },
+            {
+              "name": "python",
+              "value": "3.8"
+            },
+            {
+              "name": "origin",
+              "value": "conda-forge"
+            }
+          ]
+        }
+      ]
     },
     "status_code": 200
   },

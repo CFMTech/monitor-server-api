@@ -2,6 +2,9 @@
 Changelog
 =========
 
+* :release:`1.0.2 <2021-22-10>`
+* :bug:`#4` Fix a bug which prevents the api to query sessions from the REST Api.
+
 * :release:`1.0.1 <2021-15-10>`
 * :bug:`#2` Fix a bug which prevents the api to query sessions from the REST Api.
 

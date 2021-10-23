@@ -1,7 +1,8 @@
 {
   "/api/v1/contexts/9ae6c23d7c6b4562393385edf6da8500/metrics": {
     "data": {
-      "metrics": [        {
+      "metrics": [
+        {
           "session_h": "b83742056ad0ed304d821562b7c209ff",
           "context_h": "9ae6c23d7c6b4562393385edf6da8500",
           "item_start_time": "2021-02-09T11:52:55.528818",
@@ -66,17 +67,21 @@
   },
   "/api/v1/contexts/9ae6c23d7c6b4562393385edf6da8500": {
     "data": {
-      "h": "9ae6c23d7c6b4562393385edf6da8500",
-      "cpu_count": 8,
-      "cpu_frequency": 2500,
-      "cpu_type": "i386",
-      "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
-      "ram_total": 16384,
-      "machine_node": "Rotondu.local",
-      "machine_type": "x86_64",
-      "machine_arch": "64bit",
-      "system_info": "Darwin - 18.7.0",
-      "python_info": "3.8.6 | packaged by conda-forge | (default, Jan 25 2021, 23:22:12) [Clang 11.0.1 ]"
+      "contexts": [
+        {
+          "context_h": "9ae6c23d7c6b4562393385edf6da8500",
+          "cpu_count": 8,
+          "cpu_frequency": 2500,
+          "cpu_type": "i386",
+          "cpu_vendor": "Intel(R) Core(TM) i7-4870HQ CPU @ 2.50GHz",
+          "ram_total": 16384,
+          "machine_node": "Rotondu.local",
+          "machine_type": "x86_64",
+          "machine_arch": "64bit",
+          "system_info": "Darwin - 18.7.0",
+          "python_info": "3.8.6 | packaged by conda-forge | (default, Jan 25 2021, 23:22:12) [Clang 11.0.1 ]"
+        }
+      ]
     },
     "status_code": 200
   },

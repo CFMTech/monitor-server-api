@@ -15,7 +15,7 @@ def translate(context: Optional[Dict[str, Any]] = None,
               session: Optional[Dict[str, Any]] = None,
               metric: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     if context is not None:
-        d = dict(h=context['h'],
+        d = dict(h=context['context_h'],
                  cpu_count=context['cpu_count'],
                  cpu_freq=context['cpu_frequency'],
                  cpu_type=context['cpu_type'],
@@ -125,7 +125,7 @@ class Remote(Dialect):
             j = self.__session.get(self._make_url(f'/sessions/{session_h}'))
             if j.status_code == HTTPStatus.NO_CONTENT:
                 return None
-            return Session(**translate(session=j.json()['sessions']))
+            return Session(**translate(session=j.json()['sessions'][0]))
         except requests.RequestException:
             return None
 
@@ -153,7 +153,7 @@ class Remote(Dialect):
         try:
             for page in self._collect(self._make_url(url, **params)):
                 for session in page['sessions']:
-                    s = Session(**session)
+                    s = Session(**translate(session=session))
                     sessions[s.h] = s
             return sessions
         except requests.RequestException:
@@ -310,7 +310,7 @@ class Remote(Dialect):
         try:
             data = self.__session.get(self._make_url(f'/contexts/{context_h}'))
             if data.status_code == HTTPStatus.OK:
-                return Context(**translate(context=data.json()))
+                return Context(**translate(context=data.json()['contexts'][0]))
             return None
         except requests.RequestException:
             return None
