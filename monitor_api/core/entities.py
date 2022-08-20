@@ -8,14 +8,6 @@ import datetime
 import hashlib
 
 
-try:
-    datetime.datetime.fromisoformat(datetime.datetime.now().isoformat())
-    api_fromisoformat = datetime.datetime.fromisoformat
-except AttributeError:
-    from monitor_api.py36 import fromisoformat
-    api_fromisoformat = fromisoformat
-
-
 class Metric:
     """Basic metric record.
 
@@ -54,7 +46,7 @@ class Metric:
                  kernel_time: float = None, cpu_usage: float = None, memory_usage: float = None):
         self.__c_h = context_h or ''
         self.__s_h = session_h or ''
-        self.__time = api_fromisoformat(start_time)
+        self.__time = datetime.datetime.fromisoformat(start_time)
         self.__item_path = item_path or ''
         self.__item = item or ''
         self.__variant = variant or ''
@@ -487,7 +479,7 @@ class Session:
                  tags: Optional[Union[Dict[str, str], List[Dict[str, str]]]] = None):
         self.__h = h or ''
         self.__scm = scm_ref or ''
-        self.__start_date = api_fromisoformat(run_date)
+        self.__start_date = datetime.datetime.fromisoformat(run_date)
         self.__tags = tags or dict()
         if type(tags) is list:
             # We try to map to a session sent by remote server

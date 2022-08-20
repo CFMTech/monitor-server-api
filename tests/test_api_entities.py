@@ -4,8 +4,7 @@
 
 from monitor_api.enums import Field, MetricScope
 from monitor_api.core.entities import Context, Metric, Session
-from datetime import datetime
-from monitor_api.py36 import fromisoformat
+import datetime
 import pytest
 
 
@@ -16,19 +15,19 @@ def test_entity_session_basic(gen):
     assert s.h == h
     assert s.scm == scm
     assert s.tags == dict(build_no="123", build_branch='pipeline')
-    assert s.start_date == fromisoformat('2020-04-26T23:00:52.372833')
+    assert s.start_date == datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833')
     s = Session(h=h, scm_ref=scm, run_date='2020-04-26T23:00:52.372833',
                 tags=[dict(build_no='123', build_branch='pipeline')])
     assert s.h == h
     assert s.scm == scm
     assert s.tags == dict()
-    assert s.start_date == fromisoformat('2020-04-26T23:00:52.372833')
+    assert s.start_date == datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833')
     s = Session(h=h, scm_ref=scm, run_date='2020-04-26T23:00:52.372833',
                 tags=[dict(name='build_no', value='123'), dict(name='build_branch', value='pipeline')])
     assert s.h == h
     assert s.scm == scm
     assert s.tags == dict(build_no="123", build_branch='pipeline')
-    assert s.start_date == fromisoformat('2020-04-26T23:00:52.372833')
+    assert s.start_date == datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833')
 
 
 def test_entity_session_str(gen):
@@ -46,13 +45,13 @@ def test_entity_session_to_dict(gen):
     h, scm = gen.random_string(26), gen.random_string(32)
     s = Session(h=h, scm_ref=scm, run_date='2020-04-26T23:00:52.372833',
                 tags=dict(build_no='123', build_branch='pipeline'))
-    assert s.to_dict() == dict(session_h=h, scm=scm, run_date=fromisoformat('2020-04-26T23:00:52.372833'),
+    assert s.to_dict() == dict(session_h=h, scm=scm, run_date=datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833'),
                                tags=dict(build_no='123', build_branch='pipeline'))
     to_keep = [Field.TAGS, Field.RUN_DATE]
     assert s.to_dict(keep=to_keep) == dict(tags=dict(build_no='123', build_branch='pipeline'),
-                                           run_date=fromisoformat('2020-04-26T23:00:52.372833'))
+                                           run_date=datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833'))
     assert s.to_dict(drop=[Field.SESSION_H]) == dict(scm=scm,
-                                                     run_date=fromisoformat('2020-04-26T23:00:52.372833'),
+                                                     run_date=datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833'),
                                                      tags=dict(build_no='123', build_branch='pipeline'))
     assert s.to_dict(keep=[Field.TAGS], drop=[Field.H]) == dict(tags=dict(build_no='123', build_branch='pipeline'))
 
@@ -68,7 +67,7 @@ def test_entity_metric_basic(gen):
                wall_time=7.23, user_time=4.67, kernel_time=5.34, cpu_usage=134.8, memory_usage=234.56)
     assert m.context == ch
     assert m.session == sh
-    assert m.run_time == fromisoformat('2020-04-26T23:00:52.372833')
+    assert m.run_time == datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833')
     assert m.item_path == pypath
     assert m.item == item
     assert m.variant == variant
@@ -112,7 +111,7 @@ def test_entity_metric_to_dict(gen):
     m = Metric(context_h=ch, session_h=sh, start_time='2020-04-26T23:00:52.372833', item_path=pypath,
                item=item, variant=variant, path=path, component=comp, kind=MetricScope.FUNCTION,
                wall_time=7.23, user_time=4.67, kernel_time=5.34, cpu_usage=134.8, memory_usage=234.56)
-    exp = dict(context_h=ch, session_h=sh, start_time=fromisoformat('2020-04-26T23:00:52.372833'),
+    exp = dict(context_h=ch, session_h=sh, start_time=datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833'),
                item_path=pypath, item=item, variant=variant, path=path, component=comp, kind='function',
                wall_time=7.23, user_time=4.67, kernel_time=5.34, cpu_usage=134.8, memory_usage=234.56)
     assert m.to_dict() == exp
@@ -121,7 +120,7 @@ def test_entity_metric_to_dict(gen):
         del exp[k]
     assert m.to_dict(keep=[Field.COMPONENT, Field.ITEM, Field.ITEM_VARIANT,
                            Field.CPU_USAGE, Field.KERNEL_TIME]) == exp
-    exp = dict(context_h=ch, session_h=sh, start_time=fromisoformat('2020-04-26T23:00:52.372833'),
+    exp = dict(context_h=ch, session_h=sh, start_time=datetime.datetime.fromisoformat('2020-04-26T23:00:52.372833'),
                item_path=pypath, path=path, kind='function',
                wall_time=7.23, user_time=4.67, memory_usage=234.56)
     assert m.to_dict(drop=[Field.COMPONENT, Field.ITEM, Field.ITEM_VARIANT,
