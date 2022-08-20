@@ -5,7 +5,7 @@
 from monitor_api.enums import Field, MetricScope
 from monitor_api.core.collections import Contexts, Metrics, Sessions
 from monitor_api.core.entities import Context, Metric, Session
-from monitor_api.py36 import fromisoformat
+import datetime
 import numpy as np
 import pandas as pd
 
@@ -78,10 +78,10 @@ def test_collection_sessions_export_pandas(gen):
     for _h, _s, _d, _t in zip(h, scm, start_date, tags):
         if _h == 'anyhashvalue2':
             s[_h] = Session(_h, _s, _d)
-            df_ref.loc[loc] = [_h, fromisoformat(_d), _s, np.NaN, np.NaN, np.NaN]
+            df_ref.loc[loc] = [_h, datetime.datetime.fromisoformat(_d), _s, np.NaN, np.NaN, np.NaN]
         else:
             s[_h] = Session(_h, _s, _d, _t)
-            df_ref.loc[loc] = [_h, fromisoformat(_d), _s,
+            df_ref.loc[loc] = [_h, datetime.datetime.fromisoformat(_d), _s,
                                _t['python'], _t['build_branch'], float(_t['build_no'])]
         loc += 1
     df = s.to_df()
@@ -310,7 +310,7 @@ def test_collection_metrics_basic(gen):
     assert metric.context == c[3]
     assert metric.session == s[3]
     assert metric.component == components[3]
-    assert metric.run_time == fromisoformat('2020-04-26T13:00:52.372833')
+    assert metric.run_time == datetime.datetime.fromisoformat('2020-04-26T13:00:52.372833')
     assert metric.item_path == ipaths[3]
     assert metric.item == items[3]
     assert metric.variant == variants[3]
@@ -336,7 +336,7 @@ def test_collection_metrics_export_pandas(gen):
                         path=f'/path/to/test/{i}', kind=MetricScope.FUNCTION, component=f'comp_{i}',
                         wall_time=1 + i * 3.14, user_time=1 + i * 2.718, kernel_time=1 + i * 0.4, cpu_usage=100 + i,
                         memory_usage=314 * (i + 1)))
-        df_exp.loc[i] = [c, s, fromisoformat(f'2020-04-26T{10 + i}:00:52.372833'),
+        df_exp.loc[i] = [c, s, datetime.datetime.fromisoformat(f'2020-04-26T{10 + i}:00:52.372833'),
                          f'item.path._{i}', f'test_{i}', f'/path/to/test/{i}', f'test_{i}', 'function',
                          1 + i * 3.14, 1 + i * 2.718, 1 + i * 0.4, 100 + i, 314 * (i + 1),
                          f'comp_{i}']
