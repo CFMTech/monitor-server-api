@@ -74,11 +74,11 @@ def test_entity_metric_basic(gen):
     assert m.path == path
     assert m.scope == MetricScope.FUNCTION
     assert m.component == comp
-    assert pytest.approx(7.23, m.wall_time)
-    assert pytest.approx(4.67, m.user_time)
-    assert pytest.approx(5.34, m.kernel_time)
-    assert pytest.approx(134.8, m.cpu_usage)
-    assert pytest.approx(234.56, m.memory_usage)
+    assert 7.23 == pytest.approx(m.wall_time)
+    assert 4.67 == pytest.approx(m.user_time)
+    assert 5.34 == pytest.approx(m.kernel_time)
+    assert 134.8 == pytest.approx(m.cpu_usage)
+    assert 234.56 == pytest.approx(m.memory_usage)
     assert m.is_function()
     assert not m.is_module()
     assert not m.is_package()
