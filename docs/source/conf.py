@@ -37,7 +37,6 @@ release = '1.1.0'
 extensions = [
     'releases',
     'sphinx.ext.autodoc',
-#    'autoapi.extension',
     'sphinx.ext.autosummary'
 ]
 
