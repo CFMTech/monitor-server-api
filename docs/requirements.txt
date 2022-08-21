@@ -16,7 +16,7 @@ flask-restx==0.5.1
 Flask-SQLAlchemy==2.5.1
 greenlet==1.1.2
 idna==3.3
-imagesize1.4.1
+imagesize==1.4.1
 importlib-metadata==4.11.4
 importlib-resources==5.9.0
 itsdangerous==1.1.0
